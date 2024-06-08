@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body{
+
+background:blue;font-family: Arial, Helvetica, sans-serif;}
+.img{margin: 0 auto;
+box-shadow: 2px 2px 5px lightblue;
+display: block;
+      margin: 0 auto;
+}
+#card{ box-shadow: 5px 5px 15px lightblue;
+padding:50px 40px;
+max-width:40%;
+ position:relative;
+max-height:auto;
+border-radius:10px;
+ background: rgba(255, 255, 255,.5);
+  box-shadow: 0px 4px 4px  rgba(0, 0, 0, 0.3)
+margin: 0 auto;
+transform:translate(50%,50%);
+top:50%
+left:50%;
+display: block;
+}
+#para{
+  text-shadow: 2px 2px 5px red;
+font-size:16px;
+padding:20px 10px;
+text-align:center;
+color:yellow;
+font-weight:bold;
+}
+.button{
+box-shadow: 5px 5px 35px lightblue;
+color:blue;
+padding:12px 25px;
+border-radius:5px;
+background: rgba(255, 255, 255,.5);
+font-size:16px;
+font-weight:bold;
+display:block;
+border:none;
+text-shadow: 2px 2px 2px white;
+margin: 0 auto;
+cursor:pointer;
+}
+.button:hover{
+transition:0.5s;
+background-color:yellow;
+
+}
+</style>
+</head>
+<body>
+
+<div id="card">
+<img class="img" src="images.jpg" alt="HTML tutorial" style="width:82px;height:52px;border-radius:50%;">
+<p id="para">see quotes</p>
+<input type="submit" value="Next" id="button" class="button"></input>
+
+</div>
+<script>
+var button =document.getElementById('button');
+var paraa =document.getElementById('para');
+function myFunction(event){
+
+ event.preventDefault();
+fetch("https://official-joke-api.appspot.com/random_ten")
+  .then(response => {
+    //handle response            
+    return response.json();
+  })
+  .then(data => {
+    //handle data
+    //console.log(data);
+	
+	paraa.textContent=JSON.stringify(data[0].punchline);
+ 
+
+  })
+ ///.catch(error => {
+    //handle error
+  //});
+}
+button.addEventListener("click", myFunction);
+myFunction();
+
+
+//paraa.textContent=data;
+//console.log("click");
+
+
+
+
+</script>
+
+
+</body>
+</html>
+
